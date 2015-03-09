@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello From Html</title>
+</head>
+<body data-ng-app="tasksApp">
+  <main data-ng-controller="tasksController" data-ng-init="getAll()">
+    <h1>Tasks:</h1>
+    <form name="newTaskName">
+      <label for="newTaskBody">New Task</label>
+      <input type="text" id="newTaskBody" data-ng-model="newTask.taskBody">
+      <button type="submit" data-ng-click="create(newTask)">Save New Task</button>
+    </form>
+    <ul data-ng-repeat="task in tasks">
+      <li>
+        {{task.taskBody}}
+        <form data-ng-if="task.editing">
+          <label for="task{{task.id}}">Edit Task</label>
+          <input type="text" id="task{{task._id}}" data-ng-model="task.taskBody">
+          <button type="submit" data-ng-click="save(task)">Save Changes</button>
+          <button type="button" data-ng-click="editToggle(task)">Cancel</button>
+        </form>
+        <button data-ng-click="editToggle(task)" data-ng-if="!task.editing">Edit Task</button>
+        <button data-ng-click="remove(task)">Delete Task</button>
+      </li>
+    </ul>
+  </main>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
