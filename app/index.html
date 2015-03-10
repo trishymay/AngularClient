@@ -7,11 +7,7 @@
 <body data-ng-app="tasksApp">
   <main data-ng-controller="tasksController" data-ng-init="getAll()">
     <h1>Tasks:</h1>
-    <form name="newTaskName">
-      <label for="newTaskBody">New Task</label>
-      <input type="text" id="newTaskBody" data-ng-model="newTask.taskBody">
-      <button type="submit" data-ng-click="create(newTask)">Save New Task</button>
-    </form>
+    <div data-create-resource-directive save="create(resource)" fieldname="'taskBody" resourcename="Task"></div>
     <ul data-ng-repeat="task in tasks">
       <li>
         {{task.taskBody}}
@@ -26,7 +22,6 @@
       </li>
     </ul>
   </main>
-
   <script src="bundle.js"></script>
 </body>
 </html>
